@@ -1,0 +1,49 @@
+img {
+    height: 300px;
+    width: 300px;
+}
+
+#img-overlay{
+    border: 2px solid blue;
+    height: 298px;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#img-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+
+#previous-img{
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 130px;
+}
+
+#current-img{
+    display: flex;
+    align-items: center;
+}
+
+#next-img{
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 130px;
+}
+
+.arrows{
+    height: 50px;
+    width: 50px;
+}
