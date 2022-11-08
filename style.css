@@ -6,7 +6,7 @@ img {
 #img-overlay{
     border: 2px solid blue;
     height: 298px;
-    width: 100%;
+    width: 98%;
     position: absolute;
     z-index: 1;
     overflow: hidden;
@@ -44,6 +44,9 @@ img {
 }
 
 .arrows{
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
+}
+.arrows:hover{
+    border: 1px solid white;
 }
