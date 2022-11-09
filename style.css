@@ -50,3 +50,10 @@ img {
 .arrows:hover{
     border: 1px solid white;
 }
+
+
+/* Transitions */
+.next-transition{
+    transition: transform 250ms;
+    transform: translateX(-100px);
+}
