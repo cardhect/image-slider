@@ -18,30 +18,11 @@ img {
 #img-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     position: relative;
     overflow: hidden;
 }
 
-
-#previous-img{
-    display: flex;
-    align-items: center;
-    position: relative;
-    right: 130px;
-}
-
-#current-img{
-    display: flex;
-    align-items: center;
-}
-
-#next-img{
-    display: flex;
-    align-items: center;
-    position: relative;
-    left: 130px;
-}
 
 .arrows{
     height: 30px;
@@ -54,6 +35,16 @@ img {
 
 /* Transitions */
 .next-transition{
-    transition: transform 250ms;
-    transform: translateX(-100px);
+    transition: transform 450ms;
+    transform: translateX(-60px);
+}
+
+.img-items{
+    visibility: hidden;
+    position: absolute;
+}
+
+.img-items.active{
+    visibility: visible;
+    position: relative;
 }

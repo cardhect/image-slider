@@ -7,62 +7,91 @@ function slideImage() {
 		"img/lustig-photography-1vPblXnxhds-unsplash.jpg",
 	];
     //show the current images in the img-container
-	updateImgDivs(imgArray);
+	addImgsToDom(imgArray);
 
 	//if previous arrow is clicked
 	const previousArrow = document.getElementById("previous-arrow");
 
 	previousArrow.addEventListener("click", () => {
-		//removes last element from array and returns it
-		let lastImg = imgArray.pop();
-		//pust lastEle into the beginning of the array
-		imgArray.unshift(lastImg);
-		//update divs
-		updateImgDivs(imgArray);
+		const imgNodeList = document.querySelectorAll('.img-items');
+		//for each image in the nodelist
+		for (let i = 0; i < imgNodeList.length; i++) {
+			const element = imgNodeList[i];
+			
+			//if img has the .active class
+			if (element.classList.contains('active')) {
+				//remove its active class
+				element.classList.remove('active');
+				if (i == 0) {
+					//cycles back to the last img
+					const previousImg = imgNodeList[imgNodeList.length-1];
+					previousImg.classList.add('active');
+					break;
+				} else {
+					imgNodeList[i-1].classList.add('active');
+					break;
+				}	
+					
+			}
+				
+			
+		}
+		
+		 	
 	});
 
 	const nextArrow = document.getElementById("next-arrow");
 	
 	nextArrow.addEventListener("click", () => {
-		//removes first img and returns it
-		let currentImg = imgArray.shift();
-        //adds currentImg to the end
-		imgArray.push(currentImg);
-        //updates the divs
-		updateImgDivs(imgArray);
+		const imgNodeList = document.querySelectorAll('.img-items');
+		//for each image in the nodelist
+		for (let i = 0; i < imgNodeList.length; i++) {
+			const element = imgNodeList[i];
+			//if img has the .active class
+			if (element.classList.contains('active')) {
+				//remove its active class
+				element.classList.remove('active');
+				if (i == (imgNodeList.length - 1)) {
+					//cycles back to the first img
+					const nextImg = imgNodeList[0];
+					nextImg.classList.add('active');
+					break;
+				} else {
+					imgNodeList[i+1].classList.add('active');
+					break;
+				}	
+					
+			}
+				
+			
+		}
 	});
 }
 
-function updateImgDivs(array) {
-	const previousImgDiv = document.getElementById("previous-img");
-	const currentImgDiv = document.getElementById("current-img");
-	const nextImgDiv = document.getElementById("next-img");
+function addImgsToDom(array) {
+	const imgContainer = document.getElementById("img-container");
 	
-	let i = 0;
-	while (i <= 3) {
-		const imgElement = document.createElement("img");
+	imgContainer.innerHTML = "";
+
+	for (let index = 0; index < array.length; index++) {
+		const imgSrc = array[index];
+		const imgElement = document.createElement("img");	
 		
-		if (i == 0) {
-			//current img
-			currentImgDiv.innerHTML = "";
-			imgElement.src = array[i];
-			currentImgDiv.append(imgElement);
-			i++;
-		} else if (i == 1) {
-			//next img
-			nextImgDiv.innerHTML = "";
-			imgElement.src = array[i];
-			nextImgDiv.append(imgElement);
-			i++;
-		} else if (i == 2) {
-			//previous img
-			previousImgDiv.innerHTML = "";
-			imgElement.src = array[array.length - 1];
-			previousImgDiv.append(imgElement);
-			i++;
-			break;
-		}
+	
+			
+			imgElement.src = array[index];
+			imgContainer.append(imgElement);
+
+			if (index == 0) {
+				imgElement.classList.add('img-items');
+				imgElement.classList.add('active');
+			} else {
+				imgElement.classList.add('img-items');
+				
+			}
+		
 	}
+	
 }
 
 function transitionImgs(){
@@ -70,9 +99,29 @@ function transitionImgs(){
 	const imgDivs = document.querySelector('#img-container').children
 
 	console.log(imgDivs);
+
+	for (let i = 0; i < imgDivs.length; i++) {
+		const element = imgDivs[i];
+		const elementClass = element.getAttribute('class');
+		if(elementClass === 'next-transition'){
+			element.classList.remove('next-transition');
+			element.classList.add('next-transition');
+			console.log(elementClass);
+		} else {
+			element.classList.add('next-transition'); 
+			console.log(elementClass);
+		}
+	}
+	
+
+
 	
 }
 
 slideImage();
 
-transitionImgs();
+
+//TODO look into ways to transition images
+	//* move image from from center to left or right and next img from left/right to center depending on if next or previous is clicked.
+	
+	//* transition imgs with opacity? 
