@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///home/hex/Projects/image-slider/index.html",
+            "url": "file:///Users/hex/Projects/image-slider/index.html",
             "webRoot": "${workspaceFolder}"
         }
     ]

@@ -1,0 +1,22 @@
+{
+  "name": "@cardhect/img-slider",
+  "version": "1.0.0",
+  "description": "Simple image slider with opacity fade away transition",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cardhect/image-slider.git"
+  },
+  "author": "Hector",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cardhect/image-slider/issues"
+  },
+  "homepage": "https://github.com/cardhect/image-slider#readme",
+  "devDependencies": {
+    "eslint": "^8.27.0"
+  }
+}
