@@ -1,6 +1,6 @@
 {
   "name": "@cardhect/img-slider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple image slider with opacity fade away transition",
   "main": "script.js",
   "scripts": {
