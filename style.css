@@ -8,15 +8,32 @@ img {
 }
 
 #img-overlay {
-	border: 2px solid blue;
-	height: 298px;
-	width: 98%;
-	position: absolute;
-	z-index: 1;
-	overflow: hidden;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+    height: 298px;
+    width: 98%;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.arrow-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10%;
+}
+
+.circle-container{
+    align-self: auto;
+}
+.circle-img{
+    height: 20px;
+    width: 20px;
+    margin: 2px;
 }
 
 #img-container {
@@ -60,3 +77,5 @@ img {
 .transparent {
 	opacity: 0;
 }
+
+

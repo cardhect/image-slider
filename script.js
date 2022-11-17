@@ -1,12 +1,13 @@
+//add image sources here
+let imgArray = [
+	"img/joel-holland-TRhGEGdw-YY-unsplash.jpg",
+	"img/braden-jarvis-prSogOoFmkw-unsplash.jpg",
+	"img/omer-salom-LoijtQXXNhs-unsplash.jpg",
+	"img/jonny-gios-h_XcnLbDc_0-unsplash.jpg",
+	"img/lustig-photography-1vPblXnxhds-unsplash.jpg",
+];
+
 function slideImage() {
-	//add image sources here
-	let imgArray = [
-		"img/joel-holland-TRhGEGdw-YY-unsplash.jpg",
-		"img/braden-jarvis-prSogOoFmkw-unsplash.jpg",
-		"img/omer-salom-LoijtQXXNhs-unsplash.jpg",
-		"img/jonny-gios-h_XcnLbDc_0-unsplash.jpg",
-		"img/lustig-photography-1vPblXnxhds-unsplash.jpg",
-	];
 	//show the current images in the img-container
 	addImgsToDom(imgArray);
 
@@ -30,12 +31,14 @@ function slideImage() {
 					previousImg.classList.add("active");
 					previousImg.classList.remove("transparent");
 					transitionImgs();
+					updateCircleImg();
 
 					break;
 				} else {
 					imgNodeList[i - 1].classList.add("active");
 					imgNodeList[i - 1].classList.remove("transparent");
 					transitionImgs();
+					updateCircleImg();
 					break;
 				}
 			}
@@ -60,12 +63,14 @@ function slideImage() {
 					nextImg.classList.remove("transparent");
 					//transition Image
 					transitionImgs();
+					updateCircleImg();
 					break;
 				} else {
 					imgNodeList[i + 1].classList.add("active");
 					imgNodeList[i + 1].classList.remove("transparent");
 					//transition Image
 					transitionImgs();
+					updateCircleImg();
 					break;
 				}
 			}
@@ -108,8 +113,78 @@ function transitionImgs() {
 			element.classList.add("transparent");
 		}
 	}
+}
 
+function addCircleIcons() {
+	const openCircle = "img/open-circle.png";
+	const closedCircle = "img/closed-circle.png";
+	const circleContaienr = document.querySelector(".circle-container");
+	const imgElements = document.querySelectorAll(".img-items");
+	for (let i = 0; i < imgArray.length; i++) {
+		const imgElement = imgElements[i];
+		const imgClass = imgElement.getAttribute("class");
+		const circleImage = document.createElement("img");
+		
+		if (imgClass === "img-items active") {
+			circleImage.src = closedCircle;
+			circleImage.classList.add("circle-img");
+			circleContaienr.append(circleImage);
+		} else {
+			circleImage.src = openCircle;
+			circleImage.classList.add("circle-img");
+			circleContaienr.append(circleImage);
+		}
+	}
+}
+
+function updateCircleImg() {
+
+	const openCircle = "img/open-circle.png";
+	const closedCircle = "img/closed-circle.png";
+	const imgNodeList = document.querySelectorAll(".img-items");
+	const circleNodeList = document.querySelectorAll('.circle-img');
+
+			for (let i = 0; i < imgArray.length; i++) {
+				const imgElement = imgNodeList[i];
+				const imgClass = imgElement.getAttribute("class");
+				if (imgClass === 'img-items active') {
+					circleNodeList[i].src = closedCircle;
+				} else {
+					circleNodeList[i].src = openCircle;
+				}
+			}
+	
+}
+
+function changeImgOnCircleClick(params) {
+	const circlNodeList = document.querySelectorAll('.circle-img');
+	const imgNodeList = document.querySelectorAll('.img-items');
+	document.querySelectorAll(".circle-img").forEach((item) => {
+		item.addEventListener("click", (event) => {
+				//const selectedImgSrc = event.target.attributes[0].value;
+				const circleIndex = Array.prototype.indexOf.call(circlNodeList,event.target);
+				
+				for (let i = 0; i < imgNodeList.length; i++) {
+					const element = imgNodeList[i];
+					// const imgClass = element.getAttribute('class');
+
+					if (i === circleIndex) {
+						element.classList.remove('transparent');
+						element.classList.add('active')
+					} else {
+						element.classList.remove('active')
+						element.classList.add('transparent');
+					}
+
+					
+				}
+
+				updateCircleImg();
+				
+		});
+	});
 }
 
 slideImage();
-
+addCircleIcons();
+changeImgOnCircleClick();
