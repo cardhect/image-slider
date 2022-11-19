@@ -156,7 +156,7 @@ function updateCircleImg() {
 	
 }
 
-function changeImgOnCircleClick(params) {
+function changeImgOnCircleClick() {
 	const circlNodeList = document.querySelectorAll('.circle-img');
 	const imgNodeList = document.querySelectorAll('.img-items');
 	document.querySelectorAll(".circle-img").forEach((item) => {
@@ -185,6 +185,42 @@ function changeImgOnCircleClick(params) {
 	});
 }
 
+function imageAdvance() {
+	
+		const imgNodeList = document.querySelectorAll(".img-items");
+		//for each image in the nodelist
+		for (let i = 0; i < imgNodeList.length; i++) {
+			const element = imgNodeList[i];
+			//if img has the .active class
+			if (element.classList.contains("active")) {
+				//remove its active class
+				element.classList.remove("active");
+				if (i == imgNodeList.length - 1) {
+					//cycles back to the first img
+					const nextImg = imgNodeList[0];
+					nextImg.classList.add("active");
+					nextImg.classList.remove("transparent");
+					//transition Image
+					transitionImgs();
+					updateCircleImg();
+					break;
+				} else {
+					imgNodeList[i + 1].classList.add("active");
+					imgNodeList[i + 1].classList.remove("transparent");
+					//transition Image
+					transitionImgs();
+					updateCircleImg();
+					break;
+				}
+			}
+		}
+	
+
+}
+
 slideImage();
 addCircleIcons();
 changeImgOnCircleClick();
+
+//TODO add timeout that advances the slides every 5 seconds.
+setInterval(imageAdvance, 5000)
